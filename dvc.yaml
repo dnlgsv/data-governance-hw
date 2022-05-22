@@ -1,0 +1,12 @@
+stages:
+  train:
+    cmd: python model.py
+    deps:
+    - model.py
+    - wine_quality.csv
+    outs:
+    - report.txt
+    - lgbm_importances.png
+    metrics:
+    - metrics.json:
+        cache: false

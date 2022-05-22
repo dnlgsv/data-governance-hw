@@ -1,0 +1,25 @@
+name: model-wine-quality
+on: [push]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: iterative/setup-cml@v1
+      - name: Train model
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pip install -r requirements.txt
+          dvc repro
+
+          git fetch --prune
+
+          echo "## MODEL METRICS:" >> report.md
+          dvc metrics diff --show-md experiment > report.md
+          
+          echo "## DATA VISUALIZATION:" >> report.md
+          cml-publish lgbm_importances.png --md >> report.md
+          
+          cml-send-comment report.md
