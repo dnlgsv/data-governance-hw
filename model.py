@@ -24,10 +24,10 @@ def get_rf_score(model, y_true, x_array):
     f1_score = metrics.f1_score(y_true, y_pred, average='weighted')
     precision = metrics.precision_score(y_true, y_pred, average='weighted')
     recall = metrics.recall_score(y_true, y_pred, average='weighted')
-    print("Accuracy =", round(accuracy, 2))
-    print("F1_score =", round(f1_score, 2))
-    print("Precision =", round(precision, 2))
-    print("Recall =", round(recall, 2))  
+    print("Accuracy =", round(accuracy, 3))
+    print("F1_score =", round(f1_score, 3))
+    print("Precision =", round(precision, 3))
+    print("Recall =", round(recall, 3))  
 
     return accuracy, f1_score, precision, recall
 
