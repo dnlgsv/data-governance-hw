@@ -12,10 +12,12 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pip install -r requirements.txt
-          python model.py
-          
+          dvc repro
+
+          git fetch --prune
+
           echo "## MODEL METRICS:" >> report.md
-          cat metrics.txt >> report.md
+          dvc metrics diff --show-md experiment > report.md
           
           echo "## DATA VISUALIZATION:" >> report.md
           cml-publish lgbm_importances.png --md >> report.md
