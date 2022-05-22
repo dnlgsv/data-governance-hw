@@ -2,8 +2,8 @@ stages:
   train:
     cmd: python model.py
     deps:
+    - wine_quality.csv 
     - model.py
-    - wine_quality.csv
     outs:
     - report.txt
     - lgbm_importances.png
