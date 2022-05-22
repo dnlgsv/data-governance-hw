@@ -1,0 +1,18 @@
+schema: '2.0'
+stages:
+  train:
+    cmd: python model.py
+    deps:
+    - path: model.py
+      md5: b01681d07dfef769a9cb54ce7b9c1937
+      size: 3391
+    - path: wine_quality.csv
+      md5: 55fd784356daea3175d96786a00f1e30
+      size: 102549
+    outs:
+    - path: metrics.json
+      md5: b32d1f58aff383fc811c4cb2b908c131
+      size: 129
+    - path: rfc_importances.png
+      md5: a978e512e7012f3e9e6e2d535838b286
+      size: 3143
