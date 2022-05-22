@@ -17,7 +17,7 @@ jobs:
           git fetch --prune
 
           echo "## MODEL METRICS:" >> report.md
-          dvc metrics diff --show-md experiment > report.md
+          dvc metrics diff --show-md main > report.md
           
           echo "## DATA VISUALIZATION:" >> report.md
           cml-publish lgbm_importances.png --md >> report.md
