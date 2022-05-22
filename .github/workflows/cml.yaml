@@ -14,7 +14,7 @@ jobs:
           pip install -r requirements.txt
           python model.py
           
-          echo "## MODEL METRICS:" >> data_governance_hw/report.md
+          echo "## MODEL METRICS:" >> report.md
           cat metrics.txt >> report.md
           
           echo "## DATA VISUALIZATION:" >> report.md
