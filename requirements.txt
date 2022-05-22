@@ -6,6 +6,4 @@ sklearn
 matplotlib
 seaborn
 numpy
-lightgbm
 dvc
-json
