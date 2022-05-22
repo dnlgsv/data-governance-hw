@@ -13,7 +13,11 @@ jobs:
         run: |
           pip install -r requirements.txt
           python model.py
-
+          
+          echo "## MODEL METRICS:" >> data_governance_hw/report.md
           cat metrics.txt >> report.md
-          cml publish plot.png --md >> report.md
-          cml send-comment report.md
+          
+          echo "## DATA VISUALIZATION:" >> report.md
+          cml-publish lgbm_importances.png --md >> report.md
+          
+          cml-send-comment report.md
