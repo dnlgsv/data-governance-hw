@@ -1,13 +1,13 @@
+import json
 import warnings
 
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-from sklearn.ensemble import RandomForestClassifier
 from sklearn import metrics
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import (GridSearchCV, cross_val_score,
                                      train_test_split)
-import json
 
 warnings.filterwarnings("ignore")
 
