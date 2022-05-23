@@ -53,21 +53,21 @@ get_rf_score(clf, y_train, x_train)
 print('test score:')
 get_rf_score(clf, y_test, x_test)
 
-# param_test = {
-#  'class_weight': ['balanced'],
-#  'n_estimators': [50, 100, 200],
-#  'max_depth': [2, 5, 10]
+param_test = {
+ 'class_weight': ['balanced'],
+ 'n_estimators': [50, 100, 200],
+ 'max_depth': [2, 5, 10]
 
-# }
-# gsearch = GridSearchCV(estimator = RandomForestClassifier(max_depth=2, n_jobs=-1, random_state=SEED), 
-#                        param_grid = param_test, scoring='f1_weighted', n_jobs=-1, cv=3)
-# gsearch.fit(x_train, y_train)
-# gsearch.best_params_, gsearch.best_score_
+}
+gsearch = GridSearchCV(estimator = RandomForestClassifier(max_depth=2, n_jobs=-1, random_state=SEED), 
+                       param_grid = param_test, scoring='f1_weighted', n_jobs=-1, cv=3)
+gsearch.fit(x_train, y_train)
+gsearch.best_params_, gsearch.best_score_
 
-# print('GridSearchCV train score:')
-# get_rf_score(gsearch.best_estimator_, y_train, x_train)
-# print('GridSearchCV test score:')
-# accuracy, f1_score, precision, recall = get_rf_score(gsearch.best_estimator_, y_test, x_test)
+print('GridSearchCV train score:')
+get_rf_score(gsearch.best_estimator_, y_train, x_train)
+print('GridSearchCV test score:')
+accuracy, f1_score, precision, recall = get_rf_score(gsearch.best_estimator_, y_test, x_test)
 
 # Write scores to a file
     
