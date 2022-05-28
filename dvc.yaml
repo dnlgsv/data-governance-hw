@@ -1,9 +1,9 @@
 stages:
   train:
-    cmd: python model.py
+    cmd: python train.py
     deps:
     - wine_quality.csv 
-    - model.py
+    - train.py
     outs:
     - rfc_importances.png
     metrics:
