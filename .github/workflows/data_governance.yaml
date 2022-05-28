@@ -38,8 +38,12 @@ jobs:
           pytest test.py
       
       - name: Run Model
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
         run: |
           dvc repro
+          dvc push
 
           git fetch --prune
 
