@@ -43,15 +43,15 @@ x_train, x_test, y_train, y_test = train_test_split(df, y, test_size=0.3, random
 #################################
 
 # build the lightgbm model
-clf = RandomForestClassifier(max_depth=2, random_state=SEED).fit(x_train, y_train)
+# clf = RandomForestClassifier(max_depth=2, random_state=SEED).fit(x_train, y_train)
 
-accuracy, f1_score, precision, recall = get_rf_score(clf, y_test, x_test)
+# accuracy, f1_score, precision, recall = get_rf_score(clf, y_test, x_test)
 
-# predict the results
-print('train score:')
-get_rf_score(clf, y_train, x_train)
-print('test score:')
-get_rf_score(clf, y_test, x_test)
+# # predict the results
+# print('train score:')
+# get_rf_score(clf, y_train, x_train)
+# print('test score:')
+# get_rf_score(clf, y_test, x_test)
 
 param_test = {
  'class_weight': ['balanced'],
@@ -60,12 +60,12 @@ param_test = {
 
 }
 gsearch = GridSearchCV(estimator = RandomForestClassifier(max_depth=2, n_jobs=-1, random_state=SEED), 
-                       param_grid = param_test, scoring='f1_weighted', n_jobs=-1, cv=3)
+                       param_grid = param_test, scoring='f1_weighted', n_jobs=-1, cv=5)
 gsearch.fit(x_train, y_train)
 gsearch.best_params_, gsearch.best_score_
 
-print('GridSearchCV train score:')
-get_rf_score(gsearch.best_estimator_, y_train, x_train)
+# print('GridSearchCV train score:')
+# get_rf_score(gsearch.best_estimator_, y_train, x_train)
 print('GridSearchCV test score:')
 accuracy, f1_score, precision, recall = get_rf_score(gsearch.best_estimator_, y_test, x_test)
 
@@ -84,12 +84,12 @@ df_feature_importance = (
     pd.DataFrame({
         'feature': x_train.columns,
         # 'importance': gsearch.best_estimator_.feature_importances_,
-        'importance': clf.feature_importances_,
+        'importance': gsearch.best_estimator_.feature_importances_,
     })
     .sort_values('importance', ascending=False)
 )
 
-feature_imp = pd.DataFrame(sorted(zip(clf.feature_importances_, 
+feature_imp = pd.DataFrame(sorted(zip(gsearch.best_estimator_.feature_importances_, 
 x_train.columns)), columns=['Value', 'Feature'])
 
 plt.figure(figsize=(12, 5))
